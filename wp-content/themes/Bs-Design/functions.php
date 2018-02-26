@@ -58,4 +58,14 @@ function create_post_type() {
   }
   add_action( 'init', 'create_project' );
 
-  // Admin menu icon for projects post type
+  // register navigation menu
+
+  add_action('init', 'register_primary_menu');
+
+  function register_primary_menu() {
+  register_nav_menus( array(
+	'primary' => 'Header Menu'
+) );
+}
+
+define( 'DISALLOW_FILE_EDIT', true );
