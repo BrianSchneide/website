@@ -22,6 +22,14 @@ function bs_scripts() {
 
   wp_enqueue_style('bootstrap-responsive', get_theme_file_uri( '/assets/styles/css/vendors/bootstrap-responsive.css') );
 
+  // bootstrap scripts
+
+  // wp_enqueue_script('bootstrap-scripts', get_theme_file_uri('/assets/scripts/vendors/bootstrap.js'));
+
+  // visual scripts
+
+  wp_enqueue_script('visuals', get_theme_file_uri('/assets/scripts/visual.js'));
+
 }
 
 add_action( 'wp_enqueue_scripts', 'bs_scripts' );
@@ -63,7 +71,6 @@ function create_post_type() {
           'editor',
           'custom-fields',
           'title',
-
         )
       )
     );
@@ -96,16 +103,16 @@ function create_post_type() {
   add_action('init', 'register_primary_menu');
 
   function register_primary_menu() {
-  register_nav_menus( array(
-	'primary' => 'Header Menu'
-) );
-}
+    register_nav_menus( array(
+	  'primary' => __('Header Menu')
+    ) );
+  }
 
 function add_post_types_to_loop($query) {
     if ($query->is_main_query() && $query->is_front_page()) {
-    $query->set('Scene', array('post', 'Scene'));
+      $query->set('Scene', array('post', 'Scene'));
     }
-    }
+  }
     add_action('pre_get_posts', 'add_post_types_to_loop');
 
     // remove widgets from wordpress
@@ -126,10 +133,14 @@ function add_post_types_to_loop($query) {
    
   add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
 
-  add_action( 'pre_get_posts', 'add_my_post_types_to_query' );
- 
-function add_my_post_types_to_query( $query ) {
-    if ( is_home() && $query->is_main_query() )
-        $query->set( 'Scene', array( 'Scene' ) );
-    return $query;
+  function themename_custom_logo_setup() {
+    $defaults = array(
+        'height'      => 100,
+        'width'       => 400,
+        'flex-height' => true,
+        'flex-width'  => true,
+        'header-text' => array( 'site-title', 'site-description' ),
+    );
+    add_theme_support( 'custom-logo', $defaults );
 }
+add_action( 'after_setup_theme', 'themename_custom_logo_setup' );

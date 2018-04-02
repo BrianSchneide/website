@@ -12,29 +12,29 @@ var rename = require('gulp-rename');
 // gulp tasks
 
 gulp.task('lint', function() {
-    return gulp.src('wp-content/themes/Bs-Design/js/*.js')
+    return gulp.src('wp-content/themes/bs-Design/js/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
 });
 
 gulp.task('sass', function(){
-    return gulp.src('wp-content/themes/Bs-Design/styles/scss/*.scss')
+    return gulp.src('wp-content/themes/bs-design/assets/styles/sass/main.scss')
         .pipe(sass())
-        .pipe(gulp.dest('wp-content/themes/Bs-Design/styles/css'));
+        .pipe(gulp.dest('wp-content/themes/bs-design/assets/styles/css'));
 });
 
 gulp.task('scripts',function() {
-    return gulp.src('wp-content/themes/Bs-Design/js/*.js')
+    return gulp.src('wp-content/themes/bs-Design/js/*.js')
         .pipe(concat('all.js'))
-        .pipe(gulp.dest('wp-content/themes/Bs-Design/js'))
+        .pipe(gulp.dest('wp-content/themes/bs-Design/js'))
         .pipe(rename('all.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('wp-content/themes/Bs-Design/js'))
+        .pipe(gulp.dest('wp-content/themes/bs-Design/js'))
 });
 
 gulp.task('watch', function() {
-    gulp.watch('wp-content/themes/Bs-Design/js/*.js', ['lint', 'scripts']);
-    gulp.watch('wp-content/themes/Bs-Design/styles/scss/*.css', ['sass'])
+    gulp.watch('wp-content/themes/bs-Design/js/*.js', ['lint', 'scripts']);
+    gulp.watch('wp-content/themes/bs-Design/assets/styles/sass/*.css', ['sass'])
 });
 
 gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);

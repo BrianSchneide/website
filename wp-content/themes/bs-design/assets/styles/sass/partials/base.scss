@@ -7,3 +7,24 @@
 // Headings
 
 @import "../modules/all";
+
+#masthead {
+    background: $primary-color;
+    text-align: center;
+}
+
+.top-navigation {
+    z-index: -2;
+    display: inline-block;
+}
+
+.menu-item-20 {
+    width: 300px;
+}
+
+.scene-container {
+    background: #444433;
+    width: 100%;
+    height: 800px;
+}
+

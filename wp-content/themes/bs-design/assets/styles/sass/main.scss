@@ -7,9 +7,16 @@
 // Partials
 
 @import "partials/reset";
-@import "partials/topography";
+@import "partials/typography";
 @import "partials/buttons";
 @import "partials/figures";
 @import "partials/grids";
 
 // Third-Party styles
+
+div {
+    p {
+        font-size: 20xp;
+        color: red;
+    }
+}
